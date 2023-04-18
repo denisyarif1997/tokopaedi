@@ -10,7 +10,7 @@ class LandingPageController extends Controller
     //
     public function index()
     {
-        $product=Product::take(3)->get();
+        $product=Product::take(6)->get();
         return view ('welcome', compact('product'));
     }
 }

@@ -17,8 +17,9 @@
           <h2 id="category-label">Categories</h2>
           <ul class="list-group">
             <li class="list-group-item active">All</li>
-            <li class="list-group-item"> <a href="">Pria</a></li>
-            <li class="list-group-item"> <a href="">Wanita</a></li>
+            @foreach ($categories as $category)
+                
+            @endforeach
           </ul>
         </div>
         <h2 id="category-label" class="text-center mt-5">Search Product</h2>
@@ -32,27 +33,22 @@
           <h2>Our Products</h2>
           <hr style="margin-bottom: 2em;">
           <div class="row list-product">
-            <div class="col-lg-4 item">
-              <a href="/shop/detail">
-              <img src="{{asset('storage/images/product.jpg')}}" alt="nopic" height="180" width="180">
+            @foreach ($products as $product)
+            <div class="col-lg-4 item mb-5">
+              <a href="/shop/detail/{{$product->id}}">
+              <img src="{{asset($product->image)}}" alt="nopic" height="180" width="180">
               </a>
-              <p class="product-name mt-3 font-weight-bold"><a href="">Nama Produk</a></p>
-              <p class="product-price">Rp20000</p>
+              <p class="product-name mt-3 font-weight-bold"><a href="">{{$product->name}}</a></p>
+              <p class="product-price">Rp.{{number_format($product->price)}}</p>
             </div>
-            <div class="col-lg-4 item">
-              <a href="/shop/detail">
-              <img src="{{asset('storage/images/product.jpg')}}" alt="nopic" height="180" width="180">
-              </a>
-              <p class="product-name mt-3"><a href="">Nama Produk</a></p>
-              <p class="product-price">Rp20000</p>
-            </div>
+            @endforeach
+            {{$products->links()}}
           </div>
         </div>
       </div>
     </div>
   </div>
   <!-- Pagination Link -->
-  {{-- {{$items->links()}} --}}
 </div>
 @endsection
 

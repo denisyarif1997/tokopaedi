@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ShopController extends Controller
 {
@@ -13,10 +14,20 @@ class ShopController extends Controller
     }
     Public function index()
     {
-        return view ('shop.index');
+        $products = Product::paginate(6);
+        return view ('shop.index', compact('products'));
     }
-    Public function show()
+
+    public function category($id)
     {
-        return view ('shop.show');
+        $categories = Category::all();
+        $products = Product::where('category_id', $id)->paginate(6);
+        return view('shop.index', compact('products', 'categories'));
+
+    }
+    Public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view ('shop.show', compact('product'));
     }
 }
