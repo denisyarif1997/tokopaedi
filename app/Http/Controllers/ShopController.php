@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 
 class ShopController extends Controller
 {
@@ -12,17 +13,18 @@ class ShopController extends Controller
     {
         $this->middleware('auth');
     }
-    Public function index()
+    Public function index(Request $request, $id = null)
     {
-        $products = Product::paginate(6);
-        return view ('shop.index', compact('products'));
+        $categories = Category::all();
+        $products = Product::where('name', 'LIKE', '%'.$request->search.'%')->paginate(6); //paginate
+        return view ('shop.index', compact('products', 'categories', 'id'));
     }
 
     public function category($id)
     {
         $categories = Category::all();
         $products = Product::where('category_id', $id)->paginate(6);
-        return view('shop.index', compact('products', 'categories'));
+        return view('shop.index', compact('products', 'categories', 'id'));
 
     }
     Public function show($id)
