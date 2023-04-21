@@ -11,14 +11,28 @@
 @section('content')
 <div class="container">
     <!-- success message & Error message -->
-        {{-- @php
+    @if (Session::has('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
+
+    @if (Session::has('error'))
+    <div class="aler alert-danger">
+        {{Session::get('error')}}
+    </div>
+    @endif
+
+        @php
             $total = 0;    
-        @endphp --}}
-    {{-- @if ($carts->count() == 0)
+        @endphp
+
+    @if ($carts->count() == 0)
     <p style="text-align:center;">Your Cart is Empty</p>
-    @else --}}
+    @endif
+    
 <div>
-    <h3>1 Item in your cart</h3>
+    <h3>{{$carts->count()}} item(s) Item in your cart</h3>
 </div>
 @foreach ($carts as $cart)
 <div class="cart">
@@ -61,17 +75,16 @@
             </div>
         </div>
     </div>
+@php
+    $total += ($cart->product->price * $cart->qty);
+@endphp
 @endforeach
-
-    {{-- @php
-    $total += ($cart->item->price * $cart->quantity);
-    @endphp --}}
 <div class="totalz">
-    <h4 class="total-price">Total Price: Rp10000000</h4>
+    <h4 class="total-price">Total Price: Rp{{number_format($total)}}</h4>
 </div>
 </div>
 
-<form action="" method="POST" style="margin-left: 700px;">
+<form action="/checkout" method="POST" style="margin-left: 700px;">
 @csrf
 <button type="submit" class="btn btn-primary">Checkout</button>
 </form>

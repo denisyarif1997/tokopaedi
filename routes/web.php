@@ -30,3 +30,6 @@ Route::get('/shop/category/{id}', 'ShopController@category');
 Route::post('/cart/store', 'CartController@store');  
 
 Route::patch('cart/{id}', 'CartController@update');
+
+Route::post('/checkout', 'CheckoutController@store'); 
+

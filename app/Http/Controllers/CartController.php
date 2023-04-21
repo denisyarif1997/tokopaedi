@@ -22,12 +22,17 @@ class CartController extends Controller
 
     public function store (Request $request)
     {
+        $duplicate = Cart::where('product_id', $request->product_id)->first();
+
+        if ($duplicate) {
+        return redirect('/cart')->with('error', 'Barang sudah ada di cart !');
+        }
         Cart::create ([
             'user_id' => Auth::user()->id,
             'product_id' => $request->product_id,
             'qty' => 1
         ]);
-        return redirect('/cart');
+        return redirect('/cart')->with('success', 'Berhasil menambahkan barang di cart !');
     }
 
     public function update(Request $request, $id)
