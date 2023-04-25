@@ -19,7 +19,7 @@ Route::get('/','LandingPageController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Shopcontroller@index')->name('home');
 
 Route::get('/shop', 'ShopController@index');
 
