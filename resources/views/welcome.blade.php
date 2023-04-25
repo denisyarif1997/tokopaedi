@@ -27,7 +27,7 @@
 					<a class="nav-link underline" href="">About Us</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link underline" href="">Our Product</a>
+					<a class="nav-link underline" href="/shop">Our Product</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link button" href="/login">Sign In</a>

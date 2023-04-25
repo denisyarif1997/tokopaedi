@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$cart->product->name}}</td>
-                    <td>{{number_format($cart->product->price)}}</td>
+                    <td>Rp.{{number_format($cart->product->price)}}</td>
                     <td>{{$cart->qty}}</td>
                     <td>Rp.{{number_format($cart->qty * $cart->product->price)}}</td>
                 </tr>
@@ -35,7 +35,7 @@
                 @endforeach
             </tbody>
         </table>
-        <h1>Total Pemesanan: Rp.{{number_format($cart->qty * $cart->product->price)}}</h1>
+        <h2>Total Pemesanan: Rp.{{number_format($cart->qty * $cart->product->price)}}</h2>
     </div>
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 </body>
